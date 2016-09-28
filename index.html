@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas test</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+	<script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+
+	<script>
+  	function init() 
+  	{
+  		//Create a stage by getting a reference to the canvas
+	    stage = new createjs.Stage("hookedCanvas");
+	    //Create a Shape DisplayObject.
+	    circle = new createjs.Shape();
+	    circle.graphics.beginFill("red").drawCircle(0, 0, 40);
+	    //Set position of Shape instance.
+	    circle.x = circle.y = 50;
+	    //Add Shape instance to stage display list.
+	    stage.addChild(circle);
+
+	    //Update stage will render next frame
+	    stage.update();
+
+	    var snelheid;
+	    var x;
+	    var y;
+
+	    circle.addEventListener("click", handleClick);
+		function handleClick(event)
+		{
+		     // Click happenened
+		}
+
+		var hover = false;
+
+
+
+		circle.addEventListener("mousedown", handlePress);
+		function handlePress(event) 
+		{
+		     // A mouse press happened.
+		     // Listen for mouse move while the mouse is down:
+		    console.log('jajaja');
+		}
+
+
+		
+		function handleMove(event) 
+		{
+		     
+		}
+
+		//Update stage will render next frame
+	    createjs.Ticker.addEventListener("tick", handleTick);
+	    createjs.Ticker.setInterval(250);
+		createjs.Ticker.setFPS(4);
+	    function handleTick() {
+	    	snelheid = Math.random();
+	    	snelheid *= 10;
+		    	if(snelheid <= 3)
+		    	{
+		    		x = Math.random(); 
+		    		y = Math.random();
+		    		x *= 800;
+		    		y *= 600;
+		    		dot = new createjs.Shape();
+		    		dot.graphics.beginFill("blue").drawCircle(x,y,5);
+		    		stage.addChild(dot);
+		    		dot.x = x;
+		    		dot.y = y;
+		    		console.log(x + " " + y);
+		    		stage.update();
+		    	}
+		    
+	    	
+	    }
+
+	    
+	      function getMousePos(canvas, evt) {
+	        var rect = canvas.getBoundingClientRect();
+	        return {
+	          x: evt.clientX - rect.left,
+	          y: evt.clientY - rect.top
+	        };
+	      }
+	      var canvas = document.getElementById('hookedCanvas');
+	      var context = canvas.getContext('2d');
+
+	      canvas.addEventListener('mousemove', function(evt) {
+	        var mousePos = getMousePos(canvas, evt);
+	        circle.x = mousePos.x;
+	        circle.y = mousePos.y;
+	        stage.update();
+	        
+	      }, false);
+  	}
+
+</script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body onload="init();">
+	<center><div class="col-md-12">
+		<center><h2>Hooked!</h2></center>
+		
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores magnam cum ad quo optio atque a maiores minus quibusdam commodi, obcaecati laborum totam assumenda tenetur nostrum in dicta, eligendi possimus.</p>
+		
+			<canvas id="hookedCanvas" width="800px" height="600"></canvas>
+		
+	</div></center>
+  
+</body>
+</html>
