@@ -74,7 +74,7 @@ function init()
 	stage.update();
 	}
 
-	
+	//henk
 
 	function handleTick(event) 
 	{
