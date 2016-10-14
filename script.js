@@ -34,68 +34,62 @@ function init()
 	//steeds als er iets toegevoegd wordt of verandert aan de stage moet hij geupdate worden.
 	
 	
-	createjs.Ticker.addEventListener("tick", handleAnimation);
-	
 	
 	//handleLevel();
 	
 	index = 0;
 
-		setInterval(function(){
-			if(index < 15)
-			{
-				hookX = Math.random();
-				hookX *= 800;
+	// setInterval(function(){
+			
+	hookX = Math.random();
+	hookX *= 800;
 
-				hookY = Math.random();
-				hookY *= 600;
+	hookY = Math.random();
+	hookY *= 600;
 
-				hook = new createjs.Bitmap("img/Vishaak.png");
-				//hook.graphics.beginFill("blue").drawCircle(5,5,5);
-				hook.setBounds(hookX, hookY, 5,5);
-				// hookW = hook.getBounds().width;
-				// hookH = hook.getBounds().height;
+	hook = new createjs.Bitmap("img/Vishaak.png");
+	//hook.graphics.beginFill("blue").drawCircle(5,5,5);
+	hook.setBounds(hookX, hookY, 5,5);
+	// hookW = hook.getBounds().width;
+	// hookH = hook.getBounds().height;
 
-				hook.x = hookX;
-				hook.y = hookY;
+	hook.x = hookX;
+	hook.y = hookY;
 
-				hooks.push(hook);
-
-				stage.addChild(hook);
-
-				stage.update();
-
-				console.log(index);
-				console.log(hooks[index]);
-				index++;
-			}
-		},2000);
-	createjs.Ticker.addEventListener("tick", handleTick());
+	//hooks.push(hook);
+	
+	stage.addChild(hook);
+	
+	//console.log(hooks[index]);	
+	
+	createjs.Ticker.addEventListener("tick", handleAnimation);
+	createjs.Ticker.addEventListener("tick", handleTick);
+	
+			
+	// },2000);
+	
 	stage.update();
-	}
+}
 
 	//henk
 
-	function handleTick(event) 
+	function handleTick() 
 	{
-		for(i = 0; i < 15; i++)
-		{
 			a = fish.getBounds(); 
-			b = hooks[i].getBounds();
+			b = hook.getBounds();
+			//console.log("b is" + b);
 			if(((a.y + a.height) < (b.y)) ||
 	        (a.y > (b.y + b.height)) ||
 	        ((a.x + a.width) < b.x) ||
 	        (a.x > (b.x + b.width)))
 			{
-				// The objects are touching
-				console.log("raak!" + " " + hookX + " " + hookY);
+
 			}
 			else
 			{
-				console.log("nope");
+				alert("je hebt de haak geraakt!");
 			}
-		}
-		stage.update(event);
+			
 	}	
 
 	function handleMove()
