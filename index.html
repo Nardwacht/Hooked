@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hooked</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+	<script src="script.js"></script>
+
+</head>
+<!-- hier roepen we de functie init aan als alle HTML elementen geladen zijn -->
+<body onload="init();">
+	
+	<canvas height="600px" width="800px" id="hookedCanvas">
+	</canvas>
+	<button id="btnStart">hai</button>
+</body>
+<script>
+	$("#btnStart").click(function()
+	{
+		console.log("hallo");
+		start();
+	});
+</script>
+</html>
